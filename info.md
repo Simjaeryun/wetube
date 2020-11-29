@@ -33,3 +33,8 @@ include ./footer
 
 #{} < pug에서 자바스크립트를 쓰는 방식
 예) #{new Date().getFullYear()}
+
+pug에서 controller 각각 쓰는방법
+controller에
+render("떙떙", {pageTitle : hi})
+이런식으로 쓰면 됨
