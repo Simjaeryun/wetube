@@ -42,8 +42,8 @@ export const postUpload = async (req, res) => {
   } = req;
   const newVideo = await Video.create({
     fileUrl: path,
-    title: title,
-    description: description,
+    title,
+    description,
   });
   console.log(newVideo);
   res.redirect(routes.videoDetail(newVideo.id));
@@ -57,7 +57,7 @@ export const videoDetail = async (req, res) => {
   try {
     const video = await Video.findById(id);
     console.log(video);
-    res.render('videoDetail', { pageTitle: video.title, video: video });
+    res.render('videoDetail', { pageTitle: video.title, video });
   } catch (error) {
     console.log(Error);
     res.redirect(routes.home);
@@ -71,7 +71,7 @@ export const getEditVideo = async (req, res) => {
   } = req;
   try {
     const video = await Video.findById(id);
-    res.render('editVideo', { pageTitle: `Edit ${video.title}`, video: video });
+    res.render('editVideo', { pageTitle: `Edit ${video.title}`, video });
   } catch (error) {
     res.redirect(routes.home);
   }
@@ -83,10 +83,7 @@ export const postEditVideo = async (req, res) => {
     body: { title, description },
   } = req;
   try {
-    await Video.findOneAndUpdate(
-      { _id: id },
-      { title: title, description: description }
-    );
+    await Video.findOneAndUpdate({ _id: id }, { title, description });
   } catch (error) {
     console.log(error);
   }
