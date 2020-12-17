@@ -6,6 +6,10 @@
     width: 200px;
     display: flex;
     justify-content: center;
+    a {
+      color: #fff;
+      text-decoration: none;
+    }
     &:first-child button {
       cursor: pointer;
       border: none;
